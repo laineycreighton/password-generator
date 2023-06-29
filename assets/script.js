@@ -13,36 +13,36 @@ var pwLength = 9;
 var charChosen = [];
 
 //-----------------------------------PASSWORD CRITERIA FUNCTION-----------------------------------//
-function generatePassword() {
-  
+function pwCriteria() {
+
   //--------------------LENGTH--------------------//
   var charLength = parseInt(prompt("Please provide desired password character length between 8 and 128:"));
   if (charLength < 8 || charLength > 128 || (isNaN(charLength))) {
     alert("ALERT: Must be a number between 8 - 128 charaters!");
-    
+
     //-----------RETURN-----------//
     return "Try Again!";
   }
   confirm("You selected: " + charLength + " characters have been confirmed.");
   alert("Answer the following prompts with 'OK' or 'Cancel' to select your character types.");
-  
+
   //--------------------CHARACTERS--------------------//
-  if (confirm("Would you like numbers?")) {
+  if (userNumber = confirm("Would you like numbers?")) {
     charChosen = charChosen.concat(typeNumber);
   }
-  alert("Numbers: " + typeNumber);
-  if (confirm("Would you like upper case letters?")) {
+  alert("Numbers: " + userNumber);
+  if (userUpper = confirm("Would you like upper case letters?")) {
     charChosen = charChosen.concat(typeUpper);
   }
-  alert("Uppercase Letters: " + typeUpper);
-  if (confirm("Would you like lower case letters?")) {
+  alert("Uppercase Letters: " + userUpper);
+  if (userLower = confirm("Would you like lower case letters?")) {
     charChosen = charChosen.concat(typeLower);
   }
-  alert("Lowercase Letters: " + typeLower);
-  if (confirm("Would you like special characters?")) {
+  alert("Lowercase Letters: " + userLower);
+  if (userSpecial = confirm("Would you like special characters?")) {
     charChosen = charChosen.concat(typeSpecial)
   }
-  alert("Special Characters: " + typeSpecial);
+  alert("Special Characters: " + userSpecial);
 
   //-----------RETURN-----------//
   return true;
@@ -55,10 +55,14 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var returnCriteria = pwCriteria();
 
-  passwordText.value = password;
+  if (returnCriteria) {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+
+    passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
